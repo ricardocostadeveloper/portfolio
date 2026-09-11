@@ -1,11 +1,18 @@
 export function hoverChangeDescription(nameCard, text) {
-  var changeDescription = document.querySelector(".changeDescription");
+  const changeDescription = document.querySelector(".changeDescription");
+  const el = document.querySelector(nameCard);
 
-  document.querySelector(nameCard).addEventListener("mouseover", () => {
+  if (!el || !changeDescription) return;
+
+  el.addEventListener("mouseenter", () => {
     changeDescription.innerHTML = text;
   });
 
-  document.querySelector(nameCard).addEventListener("mouseout", () => {
-    changeDescription.innerHTML = `*passe o cursor do mouse no card para ler*`;
+  el.addEventListener("mouseleave", () => {
+    changeDescription.innerHTML = `*passe o cursor do mouse ou toque no card para ver os detalhes*`;
+  });
+
+  el.addEventListener("click", () => {
+    changeDescription.innerHTML = text;
   });
 }
